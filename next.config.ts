@@ -2,9 +2,13 @@ import type { NextConfig } from "next";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 const frameAncestors = process.env.CLINIC_FRAME_ANCESTORS?.trim();
-// Leave embedding configurable so managed previews can work; production operators
-// should explicitly restrict ancestors to 'self' or their trusted preview host.
-const safeFrameAncestors = frameAncestors && /^[a-zA-Z0-9'*.\-:/ ]+$/.test(frameAncestors) ? frameAncestors : "";
+// Arena/E2B preview must always be embeddable, even in production.
+// Operators can lock down by setting CLINIC_FRAME_ANCESTORS explicitly.
+const previewFrameAncestors = "https://*.e2b.app https://*.e2b.dev https://*.runflare.com https://*.arena.ai";
+const safeFrameAncestors =
+  frameAncestors && /^[a-zA-Z0-9'*.\-:/ ]+$/.test(frameAncestors)
+    ? frameAncestors
+    : previewFrameAncestors;
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
