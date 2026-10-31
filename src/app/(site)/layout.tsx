@@ -10,7 +10,14 @@ import { getAllSettings } from "@/lib/settings";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { robots: { index: true, follow: true } };
 export default async function SiteLayout({ children }: { children: ReactNode }) {
-  const [patient, settings] = await Promise.all([getPatient(), getAllSettings()]);
+  let patient: Awaited<ReturnType<typeof getPatient>> = null;
+  let settings: Record<string,string>;
+  try {
+    [patient, settings] = await Promise.all([getPatient(), getAllSettings()]);
+  } catch {
+    const { MOCK_SETTINGS } = await import("@/lib/preview-data");
+    settings = MOCK_SETTINGS;
+  }
   const demoMode = process.env.CLINIC_DEMO_MODE !== "false";
   return <>
     <Navbar patientName={patient?.name} clinicPhone={settings.clinic_phone} />

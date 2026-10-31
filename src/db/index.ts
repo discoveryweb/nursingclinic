@@ -11,15 +11,16 @@ const globalForDb = globalThis as typeof globalThis & {
   __arenaNextJsPostgresqlPool?: Pool;
 };
 
+const isPreviewDummy = !process.env.DATABASE_URL || process.env.DATABASE_URL.includes("build_dummy") || process.env.DATABASE_URL.includes("dummy");
 export const pool =
   globalForDb.__arenaNextJsPostgresqlPool ??
   new Pool({
     connectionString: databaseUrl,
     max: Math.min(20, Math.max(2, Number(process.env.DB_POOL_MAX) || 8)),
-    idleTimeoutMillis: 30_000,
-    connectionTimeoutMillis: 8_000,
-    statement_timeout: 15_000,
-    idle_in_transaction_session_timeout: 15_000,
+    idleTimeoutMillis: isPreviewDummy ? 2_000 : 30_000,
+    connectionTimeoutMillis: isPreviewDummy ? 1_000 : 8_000,
+    statement_timeout: isPreviewDummy ? 1_000 : 15_000,
+    idle_in_transaction_session_timeout: isPreviewDummy ? 1_000 : 15_000,
     application_name: "aramash-care-platform",
   });
 
