@@ -23,7 +23,7 @@
 
 :root { color-scheme: light; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-body { font-feature-settings: "ss01" on; background:#fbfdfb; }
+body { font-feature-settings: "ss01" on; background:#fbfdfb; text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; }
 ::selection { background-color:#c8e7d3; color:#174936; }
 button { cursor:pointer; }
 button:disabled { cursor:not-allowed; }
@@ -42,6 +42,7 @@ button:disabled { cursor:not-allowed; }
 .hero-aurora { background:radial-gradient(ellipse at 70% 25%,rgba(172,217,179,.5),transparent 54%),radial-gradient(ellipse at 10% 85%,rgba(234,216,177,.30),transparent 48%); }
 .text-gradient-green { background:linear-gradient(100deg,#317b61 0%,#6cab7e 52%,#408a6c 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
 .shadow-card { box-shadow:0 15px 50px rgba(36,84,60,.075); }
+.shadow-premium { box-shadow:0 8px 36px rgba(22,62,44,.10), 0 1px 3px rgba(22,62,44,.08); }
 
 @keyframes fade-up { from {opacity:0;transform:translateY(16px)} to {opacity:1;transform:translateY(0)} }
 .animate-fade-up { animation:fade-up .65s cubic-bezier(.22,1,.36,1) both; }
