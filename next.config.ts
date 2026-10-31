@@ -28,6 +28,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  allowedDevOrigins: ["*.e2b.app", "*.e2b.dev", "*.runflare.com"],
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
