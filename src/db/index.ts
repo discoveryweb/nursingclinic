@@ -3,10 +3,6 @@ import { Pool } from "pg";
 
 const databaseUrl = process.env.DATABASE_URL || "postgresql://build_user:dummy@localhost:5432/build_dummy";
 
-if (!process.env.DATABASE_URL) {
-  console.warn("⚠️  DATABASE_URL not set - using build dummy placeholder. Runtime requires real DATABASE_URL for database operations.");
-}
-
 const globalForDb = globalThis as typeof globalThis & {
   __arenaNextJsPostgresqlPool?: Pool;
 };

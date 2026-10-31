@@ -13,12 +13,12 @@ export function isSmsConfigured(): boolean {
 
 export function getActiveSmsProviderName(): string {
   if (process.env.MELIPAYAMAK_USERNAME && process.env.MELIPAYAMAK_PASSWORD) {
-    return "ملی‌پیامک (Melipayamak)";
+    return "ملی‌پیامک";
   }
   if (process.env.KAVENEGAR_API_KEY) {
-    return "کاوه‌نگار (Kavenegar)";
+    return "کاوه‌نگار";
   }
-  return "تنظیم‌نشده (شبیه‌سازی)";
+  return "غیرفعال";
 }
 
 export async function notificationRecipients() {
