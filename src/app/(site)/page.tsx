@@ -8,6 +8,7 @@ import { getAllSettings } from "@/lib/settings";
 import { toPersianDigits } from "@/lib/date";
 import SpecialistsDirectory from "@/components/site/SpecialistsDirectory";
 import Reveal from "@/components/site/Reveal";
+import { MOCK_DOCTORS } from "@/lib/preview-data";
 
 export const dynamic="force-dynamic";
 const services=[
@@ -28,7 +29,15 @@ const faqs=[
  {q:"اگر سرویس پیامک فعال نباشد چه اتفاقی می‌افتد؟",a:"ثبت درخواست و اعلان داخل پنل ادامه پیدا می‌کند. ارسال پیامک فقط زمانی فعال است که درگاه پیامکی کلینیک روی سرور راه‌اندازی شده باشد."},
 ];
 export default async function HomePage(){
- const [allDoctors,settings]=await Promise.all([db.select().from(doctors).where(eq(doctors.active,true)).orderBy(asc(doctors.displayOrder)),getAllSettings()]);
+ let allDoctors: typeof MOCK_DOCTORS = [];
+ let settings: Record<string,string> = {};
+ try {
+   [allDoctors,settings]=await Promise.all([db.select().from(doctors).where(eq(doctors.active,true)).orderBy(asc(doctors.displayOrder)),getAllSettings()]);
+   if (!allDoctors.length) allDoctors = MOCK_DOCTORS;
+ } catch {
+   allDoctors = MOCK_DOCTORS;
+   settings = await getAllSettings();
+ }
  const faqsJson=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(f=>({"@type":"Question",name:f.q,acceptedAnswer:{"@type":"Answer",text:f.a}}))}).replace(/</g,"\\u003c");
  const organizationJson=JSON.stringify({"@context":"https://schema.org","@type":"MedicalOrganization",name:settings.clinic_name||"کلینیک پرستاری آرامش",description:"ارائه خدمات پرستاری و مراقبتی در منزل با امکان ثبت و پیگیری آنلاین نوبت.",telephone:settings.clinic_phone||undefined,address:settings.clinic_address||undefined}).replace(/</g,"\\u003c");
  return <main id="main-content" className="overflow-hidden bg-[#fbfdfb]">
