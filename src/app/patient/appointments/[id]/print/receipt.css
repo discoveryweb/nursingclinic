@@ -1,0 +1,14 @@
+.print-receipt { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: A4 portrait; margin: 16mm; }
+@media print {
+  html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+  .skip-link, .print-toolbar { display: none !important; }
+  .print-page { background: #fff !important; min-height: 0 !important; padding: 0 !important; }
+  .print-receipt { width: 100% !important; max-width: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; margin: 0 !important; overflow: visible !important; }
+  .receipt-header { background: #fff !important; border-bottom: 2px solid #1d5941; }
+  .receipt-header * { color: #173e30 !important; }
+  .receipt-header .bg-white\/15 { border: 1px solid #dce9dd !important; }
+  .receipt-status { break-inside: avoid; }
+  .receipt-footer { margin-top: 14mm; }
+  article, section, .print-receipt > div { break-inside: avoid; }
+}

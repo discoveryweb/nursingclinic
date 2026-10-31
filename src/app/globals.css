@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Vazirmatn Variable", "Tahoma", system-ui, sans-serif;
+  --color-brand-50: #f1faf8;
+  --color-brand-100: #dcf3ed;
+  --color-brand-200: #bae6db;
+  --color-brand-300: #8dd2c0;
+  --color-brand-400: #5bb8a3;
+  --color-brand-500: #379d89;
+  --color-brand-600: #277e6f;
+  --color-brand-700: #216459;
+  --color-brand-800: #1e5049;
+  --color-brand-900: #1b433d;
+  --color-brand-950: #0b2622;
+  --color-sand-50: #fdfbf6;
+  --color-sand-100: #f8f1e4;
+  --color-sand-200: #f0e3c9;
+  --color-sand-300: #e4cca0;
+  --color-accent-400: #f0a94e;
+  --color-accent-500: #e58f2c;
+}
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+body { font-feature-settings: "ss01" on; background:#fbfdfb; }
+::selection { background-color:#c8e7d3; color:#174936; }
+button { cursor:pointer; }
+button:disabled { cursor:not-allowed; }
+:focus-visible { outline:3px solid #79b991; outline-offset:3px; }
+.skip-link { position:fixed; right:1rem; top:-5rem; z-index:100; border-radius:.75rem; background:#215f49; padding:.75rem 1rem; color:white; font-size:.85rem; font-weight:800; box-shadow:0 8px 28px #183f2b33; }
+.skip-link:focus { top:1rem; }
+
+.section-kicker { color:#67a886; font-size:12px; font-weight:800; letter-spacing:.01em; }
+.section-title { margin-top:10px; color:#1c493c; font-size:clamp(23px,3vw,32px); font-weight:900; line-height:1.55; letter-spacing:-.025em; }
+.section-subtitle { margin-top:8px; color:#82958b; font-size:13px; line-height:2; }
+.booking-input { display:block; width:100%; margin-top:8px; border:1px solid #e1eee5; background:#fbfdfb; border-radius:12px; padding:13px 14px; font-size:13px; font-weight:400; color:#345b49; outline:none; transition:border-color .2s,box-shadow .2s; }
+.booking-input:focus { border-color:#82bfa0; box-shadow:0 0 0 3px #e7f5ec; }
+.booking-input:disabled { background:#f1f6f2; color:#829b8d; }
+
+.hero-grid { background-image:linear-gradient(rgba(74,134,102,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(74,134,102,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 90%); }
+.hero-aurora { background:radial-gradient(ellipse at 70% 25%,rgba(172,217,179,.5),transparent 54%),radial-gradient(ellipse at 10% 85%,rgba(234,216,177,.30),transparent 48%); }
+.text-gradient-green { background:linear-gradient(100deg,#317b61 0%,#6cab7e 52%,#408a6c 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+.shadow-card { box-shadow:0 15px 50px rgba(36,84,60,.075); }
+
+@keyframes fade-up { from {opacity:0;transform:translateY(16px)} to {opacity:1;transform:translateY(0)} }
+.animate-fade-up { animation:fade-up .65s cubic-bezier(.22,1,.36,1) both; }
+@keyframes float-slow { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-11px)} }
+.animate-float-slow { animation:float-slow 6s ease-in-out infinite; }
+@keyframes soft-pulse { 0%,100% {box-shadow:0 0 0 0 rgba(100,177,130,.18)} 50% {box-shadow:0 0 0 8px rgba(100,177,130,0)} }
+.animate-soft-pulse { animation:soft-pulse 2.6s ease-out infinite; }
+.scroll-reveal { transition:opacity .72s cubic-bezier(.2,.75,.2,1),transform .72s cubic-bezier(.2,.75,.2,1); }
+.motion-ready .scroll-reveal:not(.is-visible) { opacity:0; transform:translateY(24px); }
+.scrollbar-thin::-webkit-scrollbar { height:6px;width:6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background:#c9e4d1;border-radius:9999px; }
+
+@page { size: A4 portrait; margin: 14mm; }
+@media print {
+  html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; }
+  body > *:not(#patient-receipt-print-root) { display: none !important; }
+  #patient-receipt-print-root { display: block !important; position: static !important; inset: auto !important; overflow: visible !important; padding: 0 !important; background: white !important; backdrop-filter: none !important; }
+  #patient-receipt-print-root .receipt-dialog { display: block !important; position: static !important; width: 100% !important; max-width: none !important; max-height: none !important; overflow: visible !important; border-radius: 0 !important; box-shadow: none !important; }
+  #patient-receipt-print-root .receipt-toolbar { display: none !important; }
+  #patient-receipt-print-root .receipt-scroll { overflow: visible !important; background: white !important; padding: 0 !important; }
+  #patient-receipt-print-root .receipt-paper { border: 1px solid #b6cebc !important; border-radius: 0 !important; box-shadow: none !important; overflow: visible !important; }
+  #patient-receipt-print-root .receipt-paper-header { background: white !important; color: #183e2c !important; border-bottom: 2px solid #205a41 !important; padding: 16px 20px !important; }
+  #patient-receipt-print-root .receipt-paper-header * { color: #183e2c !important; border-color: #a9c5ae !important; }
+  #patient-receipt-print-root .receipt-paper-body { padding: 18px 20px !important; }
+  #patient-receipt-print-root .receipt-fields { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  #patient-receipt-print-root .receipt-field, #patient-receipt-print-root .receipt-address, #patient-receipt-print-root .receipt-status { break-inside: avoid; }
+  #patient-receipt-print-root .receipt-paper-footer { color: #415c48 !important; background: white !important; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .scroll-reveal,.motion-ready .scroll-reveal:not(.is-visible) { opacity:1 !important; transform:none !important; }
+}

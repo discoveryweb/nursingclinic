@@ -1,0 +1,5 @@
+"use client";
+import { useEffect } from "react";
+import Link from "next/link";
+import { AlertTriangle,RefreshCw } from "lucide-react";
+export default function ErrorPage({error,reset}:{error:Error&{digest?:string};reset:()=>void}){useEffect(()=>{console.error("Application route error",error.digest);},[error]);return <main id="main-content" className="grid min-h-[65vh] place-items-center bg-[#f7faf7] px-5"><div className="max-w-md text-center"><span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[#fff4e9] text-[#bf8651]"><AlertTriangle size={23}/></span><h1 className="mt-5 text-xl font-black text-[#315640]">بارگذاری این صفحه انجام نشد</h1><p className="mt-2 text-xs leading-7 text-[#8c9d91]">اطلاعات شما ذخیره نشده است؟ دوباره تلاش کنید یا به صفحهٔ اصلی بازگردید.</p><div className="mt-6 flex justify-center gap-3"><button onClick={reset} className="flex items-center gap-2 rounded-xl bg-[#287c68] px-5 py-3 text-xs font-bold text-white"><RefreshCw size={15}/> تلاش دوباره</button><Link href="/" className="rounded-xl border border-[#dfeae1] bg-white px-5 py-3 text-xs font-bold text-[#668673]">صفحه اصلی</Link></div></div></main>;}
