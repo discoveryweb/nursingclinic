@@ -23,50 +23,36 @@
 
 :root { color-scheme: light; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-body { font-feature-settings: "ss01" on; background:#fbfdfb; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { font-feature-settings: "ss01" on; background:#fbfdfb; }
 ::selection { background-color:#c8e7d3; color:#174936; }
 button { cursor:pointer; }
 button:disabled { cursor:not-allowed; }
-:focus-visible { outline:3px solid #79b991; outline-offset:3px; border-radius: 8px; }
+:focus-visible { outline:3px solid #79b991; outline-offset:3px; }
 .skip-link { position:fixed; right:1rem; top:-5rem; z-index:100; border-radius:.75rem; background:#215f49; padding:.75rem 1rem; color:white; font-size:.85rem; font-weight:800; box-shadow:0 8px 28px #183f2b33; }
 .skip-link:focus { top:1rem; }
 
-.section-kicker { color:#67a886; font-size:11px; font-weight:800; letter-spacing:.06em; text-transform: uppercase; }
-.section-title { margin-top:8px; color:#1c493c; font-size:clamp(24px,3vw,34px); font-weight:900; line-height:1.5; letter-spacing:-.03em; }
-.section-subtitle { margin-top:10px; color:#82958b; font-size:13.5px; line-height:1.9; max-width: 52ch; }
-.booking-input { display:block; width:100%; margin-top:8px; border:1px solid #e1eee5; background:#fbfdfb; border-radius:12px; padding:13px 14px; font-size:13px; font-weight:400; color:#345b49; outline:none; transition:border-color .2s,box-shadow .2s,background .2s; }
-.booking-input:focus { border-color:#5fb38a; box-shadow:0 0 0 4px #e7f5ec; background:#fff; }
+.section-kicker { color:#67a886; font-size:12px; font-weight:800; letter-spacing:.01em; }
+.section-title { margin-top:10px; color:#1c493c; font-size:clamp(23px,3vw,32px); font-weight:900; line-height:1.55; letter-spacing:-.025em; }
+.section-subtitle { margin-top:8px; color:#82958b; font-size:13px; line-height:2; }
+.booking-input { display:block; width:100%; margin-top:8px; border:1px solid #e1eee5; background:#fbfdfb; border-radius:12px; padding:13px 14px; font-size:13px; font-weight:400; color:#345b49; outline:none; transition:border-color .2s,box-shadow .2s; }
+.booking-input:focus { border-color:#82bfa0; box-shadow:0 0 0 3px #e7f5ec; }
 .booking-input:disabled { background:#f1f6f2; color:#829b8d; }
-.booking-input::placeholder { color:#a8bdb2; }
 
 .hero-grid { background-image:linear-gradient(rgba(74,134,102,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(74,134,102,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 90%); }
-.hero-aurora { background:radial-gradient(ellipse at 70% 25%,rgba(172,217,179,.45),transparent 58%),radial-gradient(ellipse at 12% 80%,rgba(234,216,177,.28),transparent 52%),radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.6),transparent 70%); }
-.text-gradient-green { background:linear-gradient(100deg,#1e5a44 0%,#3a8a6b 45%,#6cab7e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
-.shadow-card { box-shadow:0 12px 40px rgba(36,84,60,.07), 0 2px 8px rgba(36,84,60,.04); }
-.shadow-premium { box-shadow:0 20px 60px rgba(16, 56, 38, .08), 0 4px 16px rgba(16, 56, 38, .04); }
-.glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.hero-aurora { background:radial-gradient(ellipse at 70% 25%,rgba(172,217,179,.5),transparent 54%),radial-gradient(ellipse at 10% 85%,rgba(234,216,177,.30),transparent 48%); }
+.text-gradient-green { background:linear-gradient(100deg,#317b61 0%,#6cab7e 52%,#408a6c 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+.shadow-card { box-shadow:0 15px 50px rgba(36,84,60,.075); }
 
 @keyframes fade-up { from {opacity:0;transform:translateY(16px)} to {opacity:1;transform:translateY(0)} }
-.animate-fade-up { animation:fade-up .7s cubic-bezier(.22,1,.36,1) both; }
-@keyframes float-slow { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-10px)} }
+.animate-fade-up { animation:fade-up .65s cubic-bezier(.22,1,.36,1) both; }
+@keyframes float-slow { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-11px)} }
 .animate-float-slow { animation:float-slow 6s ease-in-out infinite; }
-@keyframes soft-pulse { 0%,100% {box-shadow:0 0 0 0 rgba(100,177,130,.16)} 50% {box-shadow:0 0 0 8px rgba(100,177,130,0)} }
-.animate-soft-pulse { animation:soft-pulse 2.8s ease-out infinite; }
-@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+@keyframes soft-pulse { 0%,100% {box-shadow:0 0 0 0 rgba(100,177,130,.18)} 50% {box-shadow:0 0 0 8px rgba(100,177,130,0)} }
+.animate-soft-pulse { animation:soft-pulse 2.6s ease-out infinite; }
 .scroll-reveal { transition:opacity .72s cubic-bezier(.2,.75,.2,1),transform .72s cubic-bezier(.2,.75,.2,1); }
-.motion-ready .scroll-reveal:not(.is-visible) { opacity:0; transform:translateY(22px); }
+.motion-ready .scroll-reveal:not(.is-visible) { opacity:0; transform:translateY(24px); }
 .scrollbar-thin::-webkit-scrollbar { height:6px;width:6px; }
 .scrollbar-thin::-webkit-scrollbar-thumb { background:#c9e4d1;border-radius:9999px; }
-.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
-
-/* Premium scrollbar */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-thumb { background: #b7d8c0; border-radius: 999px; border: 2px solid #fbfdfb; }
-::-webkit-scrollbar-thumb:hover { background: #9cc7a8; }
-::-webkit-scrollbar-track { background: #f4f8f5; }
-
-/* Refined focus for premium feel */
-*:focus-visible { outline: 2px solid #5fb38a; outline-offset: 2px; }
 
 @page { size: A4 portrait; margin: 14mm; }
 @media print {
