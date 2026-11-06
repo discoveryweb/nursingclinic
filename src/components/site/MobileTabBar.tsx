@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CalendarDays, Home, Phone, Stethoscope, UserRound } from "lucide-react";
+import { normalizeDigits } from "@/lib/client-utils";
 
 export default function MobileTabBar({ signedIn, clinicPhone }: { signedIn: boolean; clinicPhone?: string }) {
   const pathname = usePathname();
@@ -13,7 +14,7 @@ export default function MobileTabBar({ signedIn, clinicPhone }: { signedIn: bool
         <Link href="/#doctors" className="flex min-h-11 flex-1 flex-col items-center justify-center gap-1 text-[10px] font-bold text-[#709083]"><Stethoscope size={19} />متخصصان</Link>
         <Link href="/booking" className="-translate-y-3 rounded-2xl bg-gradient-to-br from-[#2f836f] to-[#164f40] px-4 py-3 text-center text-[10px] font-extrabold text-white shadow-lg shadow-[#2f836f44] active:scale-95"><CalendarDays size={20} className="mx-auto mb-1" />رزرو نوبت</Link>
         <Link href={signedIn ? "/patient" : "/patient/login"} className={`flex min-h-11 flex-1 flex-col items-center justify-center gap-1 text-[10px] font-bold ${pathname.startsWith("/patient") ? "text-[#1d6b54]" : "text-[#709083]"}`}><UserRound size={19} />حساب من</Link>
-        <a href={clinicPhone ? `tel:${clinicPhone.replace(/[^\d+]/g, "")}` : "/#contact"} className="flex min-h-11 flex-1 flex-col items-center justify-center gap-1 text-[10px] font-bold text-[#709083]"><Phone size={19} />تماس</a>
+        <a href={clinicPhone ? `tel:${normalizeDigits(clinicPhone).replace(/[^\d+]/g, "")}` : "/#contact"} className="flex min-h-11 flex-1 flex-col items-center justify-center gap-1 text-[10px] font-bold text-[#709083]"><Phone size={19} />تماس</a>
       </div>
     </nav>
   );

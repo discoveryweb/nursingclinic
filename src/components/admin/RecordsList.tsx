@@ -107,7 +107,7 @@ export default function RecordsList({ type }: { type: "patients" | "audit" }) {
                 </div>
                 <p className="max-w-xs text-[11px] leading-6 text-[#9cb1a1]">{p.address || "آدرسی ثبت نشده"}</p>
                 {!p.phoneVerified && canVerify && (
-                  <button
+                  <button type="button"
                     disabled={busy === p.id}
                     onClick={() => verifyPhone(p)}
                     className="flex items-center gap-1.5 rounded-lg bg-[#edf8ef] px-3 py-2 text-[10px] font-bold text-[#4c9067] disabled:opacity-50"

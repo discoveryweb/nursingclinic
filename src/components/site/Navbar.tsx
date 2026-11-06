@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowUpLeft, CalendarDays, HeartPulse, MapPin, Menu, Phone, UserRound, X } from "lucide-react";
+import { normalizeDigits } from "@/lib/client-utils";
 
 const links = [
   { href: "/#home", label: "خانه" },
@@ -26,7 +27,7 @@ export default function Navbar({ patientName, clinicPhone }: { patientName?: str
       <div className="bg-[#173e33] px-4 py-2 text-[11px] text-white">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-3">
           <span>مراقبت را از انتخابی آگاهانه آغاز کنید.</span>
-          {clinicPhone && <a href={`tel:${clinicPhone.replace(/[^\d+]/g, "")}`} className="inline-flex items-center gap-1.5 font-bold text-[#c3e5ce]"><Phone size={13} />{clinicPhone}</a>}
+          {clinicPhone && <a href={`tel:${normalizeDigits(clinicPhone).replace(/[^\d+]/g, "")}`} className="inline-flex items-center gap-1.5 font-bold text-[#c3e5ce]"><Phone size={13} />{clinicPhone}</a>}
         </div>
       </div>
       <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${scrolled ? "border-[#d8ebe1] bg-white/95 shadow-[0_8px_30px_rgba(23,62,51,0.06)] backdrop-blur-md" : "border-[#e8f1ec] bg-[#fbfdfc]/95 backdrop-blur"}`}>

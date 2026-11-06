@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpLeft, HeartPulse, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { normalizeDigits } from "@/lib/client-utils";
 
 export default function Footer({ settings }: { settings: Record<string, string> }) {
   const phone = settings.clinic_phone?.trim();
@@ -35,7 +36,7 @@ export default function Footer({ settings }: { settings: Record<string, string> 
           <h3 className="mb-5 text-sm font-extrabold">ارتباط با پذیرش</h3>
           <div className="space-y-4 text-xs leading-7 text-[#bed5c6]">
             {phone ? (
-              <a href={`tel:${phone.replace(/[^\d+]/g, "")}`} className="flex items-center gap-2 hover:text-white"><Phone size={16} className="shrink-0 text-[#85c6a4]" /><span dir="ltr">{phone}</span></a>
+              <a href={`tel:${normalizeDigits(phone).replace(/[^\d+]/g, "")}`} className="flex items-center gap-2 hover:text-white"><Phone size={16} className="shrink-0 text-[#85c6a4]" /><span dir="ltr">{phone}</span></a>
             ) : (
               <p>شماره پذیرش پس از تنظیم در پنل کلینیک نمایش داده می‌شود.</p>
             )}

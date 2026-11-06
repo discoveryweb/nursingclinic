@@ -32,7 +32,12 @@ export function buildDaySlots(doctor: Pick<Doctor, "startTime" | "endTime" | "sl
   return result;
 }
 export function doctorWorksOnDate(doctor: Pick<Doctor, "workDays">, isoDate: string): boolean {
-  return isValidDate(isoDate) && (doctor.workDays ?? []).includes(new Date(`${isoDate}T00:00:00Z`).getUTCDay());
+  if (!isValidDate(isoDate)) return false;
+  // Tehran calendar day — UTC can be off by one (UTC+3:30)
+  const d = new Date(`${isoDate}T12:00:00+03:30`);
+  const w = Number.isNaN(d.getTime()) ? new Date(`${isoDate}T00:00:00Z`).getUTCDay()
+    : ({ Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 } as Record<string, number>)[new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Tehran", weekday: "short" }).format(d)] ?? new Date(`${isoDate}T00:00:00Z`).getUTCDay();
+  return (doctor.workDays ?? []).includes(w);
 }
 export function isTodayOrFuture(isoDate: string): boolean { return isValidDate(isoDate) && isoDate >= iranNow().date; }
 export function filterPastSlotsIfToday(isoDate: string, slots: string[]): string[] {
